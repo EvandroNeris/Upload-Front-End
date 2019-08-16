@@ -1,16 +1,32 @@
 import React, { useEffect, useState } from 'react';
+import api from '../service/api';
+import './Upload.css';
 
 export default function Upload() {
     const [image, setImage] = useState('');
 
     function handleUpload(event) {
-        console.log(event.target.files[0]);
         setImage(event.target.files[0]);
+        console.log(event.target.files[0]);
+    }
+
+    function handleSave() {
+        const pictures = new FormData();
+        pictures.append('src', image);
+        pictures.append('name', image.name);
+        const data = {
+            name: 'Teste',
+            pictures,
+        }
+        api.post('/upload', data);
     }
 
     return (
-        <div>
-            <input type="file" onChange={event => handleUpload(event)}/>
+        <div className="container">
+           <div className="file-upload">
+                <input type="file" name="pictures" onChange={event => handleUpload(event)}/>
+                <button onClick={handleSave}>Upload</button>
+           </div>
         </div>
     )
 }
