@@ -10,15 +10,13 @@ export default function Upload() {
         console.log(event.target.files[0]);
     }
 
-    function handleSave() {
+    async function handleSave() {
         const pictures = new FormData();
-        pictures.append('src', image);
+        pictures.append('pictures', image);
         pictures.append('name', image.name);
-        const data = {
-            name: 'Teste',
-            pictures,
-        }
-        api.post('/upload', data);
+
+        const response = await api.post('/upload', pictures);
+        console.log(response)
     }
 
     return (
