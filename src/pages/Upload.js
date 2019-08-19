@@ -14,7 +14,6 @@ export default function Upload() {
         const pictures = new FormData();
         pictures.append('pictures', image);
         pictures.append('name', image.name);
-
         const response = await api.post('/upload', pictures);
         console.log(response)
     }
