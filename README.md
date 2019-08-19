@@ -1,6 +1,4 @@
-#Upload image
-
-## Available Scripts
+## Upload image
 
 In the project directory, you can run:
 
